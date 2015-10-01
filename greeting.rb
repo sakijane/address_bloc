@@ -1,8 +1,7 @@
-#def greeting
-  ARGV.drop(1).each do |arg|
-    puts "#{ARGV.first} #{arg}"
-  end
+def greeting
+  greet = ARGV.shift
+  ARGV.each {|arg| puts "#{greet} #{arg}"}
 #  ARGV.drop(1).each do {|arg| puts "#{ARGV.first} #{arg}"}
-#end
+end
 
-#greeting
+greeting
