@@ -23,6 +23,16 @@ class AddressBook
 
   end
 
+  def get_entry_by_index(index)
+    entry = @entries[index]
+    if entry
+      puts "#{entry}"
+    else
+      puts "Please enter a valid index"
+      view_by_index
+    end
+  end
+
   def remove_entry(name, phone_number, email)
     delete_entry = nil
 
