@@ -28,25 +28,22 @@ class AddressBook
      end
   end
 
-  def get_entry_by_index(index)
-    entry = @entries[index]
-    if entry
-      puts "#{entry}"
-    else
-      puts "Please enter a valid index"
-      view_by_index
-    end
-  end
+  def binary_search(name)
+    lower = 0
+    upper = entries.length - 1
+    while lower <= upper
+      mid = (lower + upper) / 2
+      mid_name = entries[mid].name
 
-  def remove_entry(name, phone_number, email)
-    delete_entry = nil
-
-    @entries.each do |entry|
-      if name == entry.name && phone_number == entry.phone_number && email == entry.email
-        delete_entry = entry
+      if name == mid_name
+        return entries[mid]
+      elsif name < mid_name
+        upper = mid - 1
+      elsif name > mid_name
+        lower = mid + 1
       end
     end
 
-    @entries.delete(delete_entry)
+    return nil
   end
 end

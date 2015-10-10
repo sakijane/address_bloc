@@ -43,10 +43,9 @@ RSpec.describe AddressBook do
   describe "#import_from_csv" do
     it "imports the correct number of entries" do
       book.import_from_csv("entries.csv")
-      book.import_from_csv("entries_2.csv")
       book_size = book.entries.size
 
-      expect(book_size).to eql 8
+      expect(book_size).to eql 5
     end
 
     it "imports the 1st entry" do
@@ -78,43 +77,55 @@ RSpec.describe AddressBook do
       entry_five = book.entries[4]
       check_entry(entry_five, "Sussie", "555-555-2036", "sussie@blocmail.com")
     end
-
-    it "imports the 6th entry" do
-      book.import_from_csv("entries_2.csv")
-      entry_six = book.entries[5]
-
-      expect(entry_six.name).to eql "Juni"
-      expect(entry_six.phone_number).to eql "555-555-1234"
-      expect(entry_six.email).to eql "juni@okpte.com"
-      #check_entry(entry_six, "Juni", "555-555-1234", "juni@okpte.com")
-    end
-
-    it "imports the 7th entry" do
-      book.import_from_csv("entries_2.csv")
-      entry_seven = book.entries[6]
-      check_entry(entry_seven, "Lupita", "555-555-6789", "lupita@okpte.com")
-    end
-
-    it "imports the 8th entry" do
-      book.import_from_csv("entries_2.csv")
-      entry_eight = book.entries[7]
-      check_entry(entry_eight, "Oliver", "555-555-1212", "oliver@okpte.com")
-    end
   end
 
-  describe "#remove_entry" do
-    it "removes an entry using the name, phone_number and email" do
-      book.add_entry('Michael Faraday', '010.210.5181', 'michael.faraday@faraday.com')
-
-      name = 'Ada Lovelace'
-      phone_number = '010.012.1815'
-      email = 'augusta.king@lovelace.com'
-      book.add_entry(name, phone_number, email)
-
-      expect(book.entries.size).to eq(2)
-      book.remove_entry(name, phone_number, email)
-      expect(book.entries.size).to eq(1)
-      expect(book.entries.first.name).to eq('Michael Faraday')
+  describe "#binary_search" do
+    it "searches AddressBook for a non-existent entry" do
+      book.import_from_csv("entries.csv")
+      entry = book.binary_search("Dan")
+      expect(entry).to be_nil
     end
+
+    it "searches AddressBook for Bill" do
+       book.import_from_csv("entries.csv")
+       entry = book.binary_search("Bill")
+       expect(entry).to be_a Entry
+       check_entry(entry, "Bill", "555-555-4854", "bill@blocmail.com")
+     end
+
+     it "searches AddressBook for Bob" do
+       book.import_from_csv("entries.csv")
+       entry = book.binary_search("Bob")
+       expect(entry).to be_a Entry
+       check_entry(entry, "Bob", "555-555-5415", "bob@blocmail.com")
+     end
+
+     it "searches AddressBook for Joe" do
+       book.import_from_csv("entries.csv")
+       entry = book.binary_search("Joe")
+       expect(entry).to be_a Entry
+       check_entry(entry, "Joe", "555-555-3660", "joe@blocmail.com")
+     end
+
+     it "searches AddressBook for Sally" do
+       book.import_from_csv("entries.csv")
+       entry = book.binary_search("Sally")
+       expect(entry).to be_a Entry
+       check_entry(entry, "Sally", "555-555-4646", "sally@blocmail.com")
+     end
+
+     it "searches AddressBook for Sussie" do
+       book.import_from_csv("entries.csv")
+       entry = book.binary_search("Sussie")
+       expect(entry).to be_a Entry
+       check_entry(entry, "Sussie", "555-555-2036", "sussie@blocmail.com")
+     end
+
+     it "searches AddressBook for Billy" do
+       book.import_from_csv("entries.csv")
+       entry = book.binary_search("Billy")
+       expect(entry).to be_nil
+     end
   end
+
 end
