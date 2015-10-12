@@ -143,9 +143,10 @@ class MenuController
 
     case selection
     when "y"
+      system "clear"
       @address_book.entries.clear
       puts "All entries have been deleted"
-      #delete all entries
+      main_menu
     when "n"
       system "clear"
       main_menu
