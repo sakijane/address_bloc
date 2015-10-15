@@ -81,7 +81,7 @@ RSpec.describe AddressBook do
 
     it "imports the 6th entry" do
       book.import_from_csv("entries_2.csv")
-      entry_six = book.entries[5]
+      entry_six = book.entries[0]
 
       expect(entry_six.name).to eql "Juni"
       expect(entry_six.phone_number).to eql "555-555-1234"
@@ -91,13 +91,13 @@ RSpec.describe AddressBook do
 
     it "imports the 7th entry" do
       book.import_from_csv("entries_2.csv")
-      entry_seven = book.entries[6]
+      entry_seven = book.entries[1]
       check_entry(entry_seven, "Lupita", "555-555-6789", "lupita@okpte.com")
     end
 
     it "imports the 8th entry" do
       book.import_from_csv("entries_2.csv")
-      entry_eight = book.entries[7]
+      entry_eight = book.entries[2]
       check_entry(entry_eight, "Oliver", "555-555-1212", "oliver@okpte.com")
     end
   end
