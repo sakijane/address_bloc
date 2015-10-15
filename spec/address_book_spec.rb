@@ -86,7 +86,6 @@ RSpec.describe AddressBook do
       expect(entry_six.name).to eql "Juni"
       expect(entry_six.phone_number).to eql "555-555-1234"
       expect(entry_six.email).to eql "juni@okpte.com"
-      #check_entry(entry_six, "Juni", "555-555-1234", "juni@okpte.com")
     end
 
     it "imports the 7th entry" do
