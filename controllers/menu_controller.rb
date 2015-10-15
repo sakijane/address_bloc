@@ -135,23 +135,6 @@ class MenuController
     end
   end
 
-  def nuke
-    puts "Delete all entries?"
-    puts "y - Nuke it all!"
-    puts "n - Get me out of here!"
-    selection = gets.chomp
-
-    case selection
-    when "y"
-      @address_book.entries.clear
-      puts "All entries have been deleted"
-      #delete all entries
-    when "n"
-      system "clear"
-      main_menu
-    end
-  end
-
   def delete_entry(entry)
     @address_book.entries.delete(entry)
     puts "#{entry.name} has been deleted"
